@@ -1,0 +1,61 @@
+import java.text.NumberFormat;
+public class ShoppingCart2
+{
+    NumberFormat fmt = NumberFormat.getCurrencyInstance();
+    private int itemCount;
+    double totalPrice;
+    private int capacity;
+    Item[] cart;
+    /**
+     * Creates an empty shopping cart with a capacity of 5 items.
+     */
+    public ShoppingCart2()
+    {
+        // initialise instance variables
+        capacity = 5;
+        itemCount = 0;
+        totalPrice = 0.0;
+        Item[] cart = new Item[capacity];        
+    }
+
+    /**
+     * Adds an item to the shopping cart.
+     */
+    public void addToCart(String itemName, double price, int quantity)
+    {
+        if(itemCount > capacity - 1) 
+        {
+            increaseSize();
+        }
+        totalPrice += (quantity*price);
+        cart[itemCount] = new Item(itemName, price, quantity);
+        itemCount++;
+    }
+    
+    public String toString()
+    {
+        String contents = "\nShopping cart";
+        contents += "\nItem\t\tUnit Price\tQuantity\tTotal\n";
+        
+        for (int i = 0; i < itemCount; i++)
+            contents += cart[i] + "\n";
+        
+        contents += "\nTotal Price: " + getTotalPrice();
+        contents += "\n";
+        
+        return contents;
+    }
+    
+    public String getTotalPrice()
+    {
+        return fmt.format(totalPrice);
+    }
+    
+    private void increaseSize()
+    {
+        Item[] tempCart = new Item[cart.length + 3];
+        for (int i = 0; i <= itemCount; i++)
+            tempCart[i] = cart[i];
+        cart = tempCart;
+    }
+}
