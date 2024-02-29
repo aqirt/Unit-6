@@ -7,4 +7,5 @@ public static void main(String[] args)
 
   while (input != "N") 
   {
+    DeckOfCards deck = new DeckOfCards();
     
