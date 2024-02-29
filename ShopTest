@@ -1,0 +1,38 @@
+import java.util.*;
+/**
+ * Write a description of class ShopTest here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+public class ShopTest
+{
+    public static void main(String[] args)
+    {
+        Scanner scan = new Scanner(System.in);
+        String item;
+        int quantity;
+        double price;
+        ShoppingCart cart = new ShoppingCart();
+        
+        System.out.println("Welcome to Shopper's Paradise\n\n");
+        
+        System.out.print("Enter the name of first item: ");
+        item = scan.nextLine();   
+        while(item != "Q")
+        {
+            System.out.print("Enter the quantity: ");
+            quantity = scan.nextInt();
+            System.out.print("Enter the price: ");
+            price = scan.nextDouble();
+            cart.addToCart(item, price, quantity);
+            scan.nextLine();
+            
+            System.out.println(cart.toString());
+            
+            System.out.println("Enter the name of item or Q to quit: ");
+            item = scan.nextLine();
+        }
+        System.out.println("Please Pay " + cart.getTotalPrice());
+    }   
+}
